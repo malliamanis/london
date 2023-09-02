@@ -9,6 +9,10 @@
 #include "graphics/window.h"
 #include "entities/player.h"
 
+#define WIDTH 1280
+#define HEIGHT 720
+#define TITLE "London"
+
 typedef struct {
 	Window *window;
 

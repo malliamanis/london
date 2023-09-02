@@ -1,10 +1,15 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <stdint.h>
+#include <stdbool.h>
+
 #include "entities/entity.h"
 
 typedef struct {
 	Entity *entity;
+
+	bool jump;
 } Player;
 
 Player *player_create(Entity *entity);

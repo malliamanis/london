@@ -7,10 +7,6 @@
 #include "london.h"
 #include "graphics/renderer.h"
 
-#define WIDTH 1280
-#define HEIGHT 720
-#define TITLE "London"
-
 static London *init(void);
 
 static void update(London *london);
@@ -25,7 +21,7 @@ static London *init(void)
 
 	london->window = window_init(WIDTH, HEIGHT, TITLE);
 
-	london->player = player_create(entity_create(ENTITY_PLAYER, 0, 0, 100.0f, 100.0f));
+	london->player = player_create(entity_create(ENTITY_PLAYER, 0, 0, 50.0f, 50.0f));
 //	london->entities = list_create();
 
 	return london;
