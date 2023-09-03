@@ -23,6 +23,7 @@ void player_tick(Player *p)
 {
 	if (p->entity->body.y + p->entity->body.height >= HEIGHT) {
 		p->in_air = false;
+
 		p->entity->vel.y = 0.0f;
 		p->entity->acc.y = 0.0f;
 		p->entity->body.y = HEIGHT - p->entity->body.height;
