@@ -7,6 +7,6 @@
 
 void renderer_clear(Color color);
 void renderer_render_entity(Entity *entity);
-void renderer_render_textured_entity(Entity *entity, Texture2D *texture);
+void renderer_render_entity_rot(Entity *entity, Vector2 origin, float rotation);
 
 #endif // RENDERER_H

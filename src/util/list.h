@@ -35,7 +35,7 @@ void  list_remove(List *list, void *data);
 void list_mark_for_removal(List *list, Node *node);
 void list_remove_marked(List *list);
 
-void list_free(List *list);
+void list_destroy(List *list);
 
 void list_print(List *list);
 

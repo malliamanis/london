@@ -7,10 +7,6 @@
 #include "entities/player.h"
 #include "graphics/renderer.h"
 
-#define METER ((float)(100.0f)) // 20px = 1 meter
-#define DELTA_TIME ((double)(1.0 / 60.0))
-
-#define G ((float)(9.81f)* METER)
 #define SPEED ((float)(4.0f) * METER)
 
 Player *player_create(Entity *entity)
@@ -18,8 +14,7 @@ Player *player_create(Entity *entity)
 	Player *p = malloc(sizeof(Player));
 
 	p->entity = entity;
-
-	p->jump = false;
+	p->in_air = true;
 
 	return p;
 }
@@ -27,17 +22,17 @@ Player *player_create(Entity *entity)
 void player_tick(Player *p)
 {
 	if (p->entity->body.y + p->entity->body.height >= HEIGHT) {
-		p->jump = false;
-		p->entity->velocity.y = 0.0f;
-		p->entity->acceleration.y = 0.0f;
+		p->in_air = false;
+		p->entity->vel.y = 0.0f;
+		p->entity->acc.y = 0.0f;
 		p->entity->body.y = HEIGHT - p->entity->body.height;
 	}
 	else
-		p->entity->acceleration.y = G;
+		p->entity->acc.y = G;
 
-	if (IsKeyDown(KEY_SPACE) && !p->jump) {
-		p->jump = true;
-		p->entity->velocity.y -= SPEED;
+	if (IsKeyDown(KEY_SPACE) && !p->in_air) {
+		p->in_air = true;
+		p->entity->vel.y -= SPEED * 1.25f;
 	}
 
 	if (IsKeyDown(KEY_A))
@@ -45,21 +40,20 @@ void player_tick(Player *p)
 	if (IsKeyDown(KEY_D))
 		p->entity->body.x += SPEED * DELTA_TIME;
 
-	p->entity->velocity.x += p->entity->acceleration.x * DELTA_TIME;
-	p->entity->velocity.y += p->entity->acceleration.y * DELTA_TIME;
+	p->entity->vel.x += p->entity->acc.x * DELTA_TIME;
+	p->entity->vel.y += p->entity->acc.y * DELTA_TIME;
 
-	p->entity->body.x += p->entity->velocity.x * DELTA_TIME;
-	p->entity->body.y += p->entity->velocity.y * DELTA_TIME;
+	p->entity->body.x += p->entity->vel.x * DELTA_TIME;
+	p->entity->body.y += p->entity->vel.y * DELTA_TIME;
 }
 
 void player_render(Player *p)
 {
-	renderer_render_entity(p->entity);
+	entity_render(p->entity);
 }
 
 void player_destroy(Player *p)
 {
-	free(p->entity);
+	entity_destroy(p->entity);
 	free(p);
 }
-

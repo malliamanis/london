@@ -107,7 +107,7 @@ void list_remove_marked(List *list)
 	list->marked_iterator = 0;
 }
 
-void list_free(List *list)
+void list_destroy(List *list)
 {
 	Node *head = list->head;
 	Node *prev = NULL;

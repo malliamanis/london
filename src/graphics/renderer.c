@@ -12,7 +12,7 @@ void renderer_render_entity(Entity *entity)
 	DrawRectangleRec(entity->body, entity->color);
 }
 
-void renderer_render_textured_entity(Entity *entity, Texture2D *texture)
+void renderer_render_entity_rot(Entity *entity, Vector2 origin, float rotation)
 {
-	DrawTexturePro(*texture, (Rectangle) {0, 0, texture->width, texture->height}, entity->body, (Vector2) {0}, 0.0f, WHITE);
+	DrawRectanglePro(entity->body, origin, rotation, entity->color);
 }

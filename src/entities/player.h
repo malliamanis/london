@@ -8,8 +8,7 @@
 
 typedef struct {
 	Entity *entity;
-
-	bool jump;
+	bool in_air;
 } Player;
 
 Player *player_create(Entity *entity);
@@ -20,4 +19,3 @@ void player_render(Player *player);
 void player_destroy(Player *player);
 
 #endif
-

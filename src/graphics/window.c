@@ -13,7 +13,7 @@ Window *window_init(int32_t width, int32_t height, const char *title)
 	window->width = width;
 	window->height = height;
 	window->title = title;
-	window->background = BLACK;
+	window->background = BLUE;
 
 	if (!already_exists) {
 		InitWindow(width, height, title);

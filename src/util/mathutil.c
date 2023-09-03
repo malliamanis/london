@@ -19,7 +19,7 @@ Vector2 math_vec2_scale(Vector2 v, float a)
 	return (Vector2) {v.x * a, v.y * a};
 }
 
-Vector2 math_norm_vec2(Vector2 v)
+Vector2 math_vec2_norm(Vector2 v)
 {
 	float ilength = 1 / sqrt(v.x * v.x + v.y * v.y);
 	return (Vector2) {v.x * ilength, v.y * ilength};
@@ -43,7 +43,7 @@ void math_ptr_vec2_scale(Vector2 *v, float a)
 	v->y *= a;
 }
 
-void math_ptr_norm_vec2(Vector2 *v)
+void math_ptr_vec2_norm(Vector2 *v)
 {
 	float ilength = 1 / sqrt(v->x * v->x + v->y * v->y);
 	v->x *= ilength;
