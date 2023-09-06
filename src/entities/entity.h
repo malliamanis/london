@@ -5,11 +5,13 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <stdbool.h>
 
 typedef enum {
 	ENTITY_PLAYER,
 	ENTITY_GUN,
-	ENTITY_BULLET
+	ENTITY_BULLET,
+	ENTITY_ENEMY
 } EntityType;
 
 typedef struct {

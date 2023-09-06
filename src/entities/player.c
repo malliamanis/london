@@ -16,12 +16,15 @@ Player *player_create(Entity *entity)
 	p->entity = entity;
 	p->in_air = true;
 
+	p->life = 3;
+	p->score = 0;
+
 	return p;
 }
 
 void player_tick(Player *p)
 {
-	if (p->entity->body.y + p->entity->body.height >= HEIGHT) {
+	if (p->entity->body.y + p->entity->body.height >= HEIGHT - (SPEED / METER)) {
 		p->in_air = false;
 
 		p->entity->vel.y = 0.0f;
@@ -44,7 +47,18 @@ void player_tick(Player *p)
 	p->entity->vel.x += p->entity->acc.x * DELTA_TIME;
 	p->entity->vel.y += p->entity->acc.y * DELTA_TIME;
 
-	p->entity->body.x += p->entity->vel.x * DELTA_TIME;
+	if (p->entity->body.x < 0) {
+		p->entity->vel.x = 0;
+		p->entity->body.x = 0;
+	}
+	else if (p->entity->body.x + p->entity->body.width > WIDTH) {
+		p->entity->vel.x = 0;
+		p->entity->body.x = WIDTH - p->entity->body.width;
+	}
+	else {
+		p->entity->body.x += p->entity->vel.x * DELTA_TIME;
+	}
+
 	p->entity->body.y += p->entity->vel.y * DELTA_TIME;
 }
 

@@ -12,7 +12,7 @@
 #include "entities/bullet.h"
 #include "graphics/renderer.h"
 
-#define BULLET_SPEED ((float)(1.0f) * METER)
+#define BULLET_SPEED ((float)(0.35f) * METER)
 #define BULLET_SIZE ((float)(5.0f))
 
 // macros for the coordinates of the middle of the player cause they are used a lot
