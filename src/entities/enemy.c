@@ -56,7 +56,8 @@ void enemy_tick(Enemy *e)
 	if (CheckCollisionRecs(e->entity->body, e->player->entity->body)) {
 		if (!e->inside_player) {
 			e->inside_player = true;
-			--e->player->life;
+			if (e->player->life != 0)
+				--e->player->life;
 		}
 	}
 	else
