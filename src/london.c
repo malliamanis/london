@@ -1,8 +1,8 @@
-#include <raylib.h>
-
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include <raylib.h>
 
 #include "london.h"
 #include "util/list.h"
@@ -41,29 +41,32 @@ void london_run(void)
 
 	SetRandomSeed(time(NULL));
 
-    const double delta_time = DELTA_TIME;
+	const double delta_time = DELTA_TIME;
 
-    double currentTime = GetTime();
+	double currentTime = GetTime();
 	double newTime;
-    double accumulator = 0.0;
+	double accumulator = 0.0;
 
-    while (!window_should_close())
-    {
+	const double delta_time1 = GetMonitorRefreshRate(GetCurrentMonitor());
+	printf("%lf\n", delta_time1);
+
+	while (!window_should_close())
+	{
 		update(l);
 
-        newTime = GetTime();
+		newTime = GetTime();
 
-        accumulator += newTime - currentTime;
-        currentTime = newTime;
+		accumulator += newTime - currentTime;
+		currentTime = newTime;
 
-        while (accumulator >= delta_time)
-        {
-            tick(l);
-            accumulator -= delta_time;
-        }
+		while (accumulator >= delta_time)
+		{
+			tick(l);
+			accumulator -= delta_time;
+		}
 
-        render(l);
-    }
+		render(l);
+	}
 
 	terminate(l);
 }
@@ -149,7 +152,6 @@ static void render(London *l)
 
 		DrawText(life_str, WIDTH - MeasureText(life_str, 50) - 5, 0, 50, life_color);
 	}
-
 
 	EndDrawing();
 }

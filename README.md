@@ -6,7 +6,7 @@ Dumb game
 ## How to build
 
 ```
-$ git clone https://github.com/theverdik/london.git --recurse-submodules
+$ git clone https://github.com/malliamanis/london.git --recurse-submodules
 ```
 and
 ```
